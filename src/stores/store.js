@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-import boardReducer from "./board";
+import postReducer from "../features/postSlice";
+// import createPostReducer from "../features/createPostSlice";
 
 export default configureStore({
   reducer: {
-    board: boardReducer,
+    posts: postReducer,
+    // createPost: createPostReducer,
   },
 });

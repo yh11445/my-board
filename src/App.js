@@ -1,14 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Outlet, Route, Routes } from "react-router-dom";
-import { getBoard, setBoard } from "./stores/board";
+import Board from "./components/Board";
 import Login from "./components/Login";
+import Post from "./components/Post";
+import CreatePost from "./components/CreatePost";
 
 function App() {
   return (
     <Routes>
       <Route element={<BasicWrap />}>
         <Route path="/" element={<Login />} />
-        <Route path="/sub" element={<SubPage />} />
+        <Route path="/board" element={<Board />} />
+        <Route path="/post/:postId" element={<Post />} />
+        <Route path="/post/create" element={<CreatePost />} />
       </Route>
     </Routes>
   );
@@ -25,20 +28,4 @@ const BasicWrap = () => {
   );
 };
 
-const SubPage = () => {
-  const dispatch = useDispatch();
-  const board = useSelector(getBoard);
-  console.log(board);
-  return (
-    <>
-      <button
-        onClick={() => {
-          dispatch(setBoard([{ id: 1, title: "title1", content: "content1" }]));
-        }}
-      >
-        click
-      </button>
-    </>
-  );
-};
 export default App;
