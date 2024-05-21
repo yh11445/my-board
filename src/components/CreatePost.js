@@ -5,7 +5,7 @@ import {
   setContent,
   setFile,
   submitPost,
-} from "../features/postSlice";
+} from "../features/PostSlice";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   TextField,

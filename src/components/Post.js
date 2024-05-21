@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
-  Paper,
   Typography,
   Container,
   CircularProgress,
@@ -12,7 +11,7 @@ import {
   CardActions,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPost } from "../features/postSlice";
+import { fetchPost } from "../features/PostSlice";
 
 const Post = () => {
   const { postId } = useParams(); // URL에서 postId 추출

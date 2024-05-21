@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPostList, setTab, setPage } from "../features/postSlice";
+import { fetchPostList, setTab, setPage } from "../features/PostSlice";
 import {
   Table,
   TableBody,
@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axios";
 
 const Board = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,16 @@ const Board = () => {
   };
 
   const goToPost = (postId) => {
-    navigate(`/post/${postId}?page=${currentPage}`);
+    axiosInstance
+      .get(`/posts/${postId}`)
+      .then((response) => {
+        // 데이터 처리 및 페이지 이동
+        navigate(`/post/${postId}?page=${currentPage}`);
+      })
+      .catch((error) => {
+        console.error("Post fetch failed:", error);
+        // 에러 처리 로직 (예: 에러 페이지로 리다이렉트)
+      });
   };
 
   const goToCreatePost = () => {
